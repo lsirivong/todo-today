@@ -1,25 +1,12 @@
-<h1>Listing tasks</h1>
-
-<table>
-  <tr>
-    <th>Description</th>
-    <th>Completed</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<h1>Your todos for today, <%= Date.today.strftime('%A %B %e') %></h1>
 <% @tasks.each do |task| %>
-  <tr>
-    <td><%= task.description %></td>
-    <td><%= task.completed %></td>
-    <td><%= link_to 'Show', task %></td>
-    <td><%= link_to 'Edit', edit_task_path(task) %></td>
-    <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <div>
+    <span><%= task.description %></span>
+    <span><%= task.completed %></span>
+    <span><%= link_to 'Edit', edit_task_path(task) %></span>
+    <span><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+  </div>
 <% end %>
-</table>
 
-<br />
-
-<%= link_to 'New Task', new_task_path %>
+<h2>Add todo:</h2>
+<%= render :partial => "form" %>
