@@ -11,8 +11,11 @@
     </div>
   <% end %>
 
+  <% isNew = @task.id == nil %>
+
   <div class="field">
+    <%= f.check_box :completed %>
     <%= f.text_field :description %>
-    <%= f.submit %>
+    <%= f.submit (isNew ? 'Add' : 'Update') %>
   </div>
 <% end %>
