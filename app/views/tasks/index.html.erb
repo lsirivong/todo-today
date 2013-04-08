@@ -1,12 +1,11 @@
-<h1>Your todos for today, <%= Date.today.strftime('%A %B %e') %></h1>
+<h1>Stuff to complete today, <%= Date.today.strftime('%A, %B %e') %></h1>
+<%= render :partial => "form" %>
 <% @tasks.each do |task| %>
   <div>
+    <span><input disabled="disabled" type="checkbox" <%= 'checked="checked"' if task.completed %> value="<%= task.id %>" /></span>
     <span><%= task.description %></span>
-    <span><%= task.completed %></span>
     <span><%= link_to 'Edit', edit_task_path(task) %></span>
     <span><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></span>
   </div>
 <% end %>
 
-<h2>Add todo:</h2>
-<%= render :partial => "form" %>
