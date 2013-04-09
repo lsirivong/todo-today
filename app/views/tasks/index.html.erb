@@ -1,5 +1,5 @@
 <h1>Stuff to complete today, <%= Date.today.strftime('%A, %B %e') %></h1>
-<%= render :partial => "form" %>
+<%= render :partial => "simple_form" %>
 <% @tasks.each do |task| %>
   <div>
     <span><input disabled="disabled" type="checkbox" <%= 'checked="checked"' if task.completed %> value="<%= task.id %>" /></span>

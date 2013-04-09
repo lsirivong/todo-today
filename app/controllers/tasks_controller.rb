@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    today = Date.today
+    @tasks = Task.where("created_at > #{today}")
     @task = Task.new
 
     respond_to do |format|
