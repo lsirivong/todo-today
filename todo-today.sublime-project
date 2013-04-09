@@ -2,7 +2,9 @@
 	"folders":
 	[
 		{
-			"path": "/Users/lsirivong/src/todo-today"
+			"path": "/Users/lsirivong/src/todo-today",
+			"folder_exclude_patterns": ["tmp"],
+			"file_exclude_patterns": ["todo-today.sublime*"]
 		}
 	]
 }
