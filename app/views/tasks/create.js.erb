@@ -1,0 +1,2 @@
+$('.new_task input[name^=task]').val('');
+$('.task_list').prepend('<%= escape_javascript render :partial => "tasks/task", :locals => { :task => @task } %>');

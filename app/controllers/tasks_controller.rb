@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     today = Date.today
-    @tasks = Task.where("created_at > #{today}")
+    @tasks = Task.where("created_at > #{today}").order("created_at DESC")
     @task = Task.new
 
     respond_to do |format|
@@ -47,9 +47,11 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         format.html { redirect_to @task, notice: 'Task was successfully created.' }
+        format.js
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
+        format.js
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
