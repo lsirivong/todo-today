@@ -14,7 +14,7 @@
   <% isNew = @task.id == nil %>
 
   <div class="field">
-    <%= f.text_field :description %>
+    <%= f.text_field :description, :placeholder => 'Call Mom, wash dishes, etc.' %>
     <%= f.submit (isNew ? 'Add' : 'Update') %>
   </div>
 <% end %>
