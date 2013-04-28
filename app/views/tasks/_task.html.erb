@@ -1,6 +1,6 @@
 <div>
-  <span><input type="checkbox" <%= 'checked' if task.completed %> value="<%= task.id %>" /></span>
-  <span><%= task.description %></span>
-  <span><%= link_to 'Edit', edit_task_path(task) %></span>
-  <span><%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+  <input type="checkbox" <%= 'checked' if task.completed %> value="<%= task.id %>" />
+  <i><%= task.description %></i>
+  <%= link_to 'Edit', edit_task_path(task) %>
+  <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>

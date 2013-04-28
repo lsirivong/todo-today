@@ -1,9 +1,12 @@
 @import 'normalize';
 
+$border-radius: 3px;
+
 body {
   font-family: 'Jubilat';
   font-size: 2em;
 
+  max-width: 27em;
   margin: 0.8em auto;
   padding: 0 1em;
 }
@@ -15,23 +18,50 @@ h1 {
   margin: 0.5em;
 }
 
+i {
+  font-style: normal;
+}
+
+input:checked + i {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+.field {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
 input[type="text"], textarea, input[type="submit"] {
   font-family: inherit;
-  border-radius: 2px;
+  box-sizing: border-box;
 }
 
 input[type="text"] {
-  border: 0;
+  border-radius: $border-radius 0 0 $border-radius;
+  -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 1;         /* OLD - Firefox 19- */
+  // width: 20%;               /* For old syntax, otherwise collapses. */
+  -webkit-flex: 1;          /* Chrome */
+  -ms-flex: 1;              /* IE 10 */
+  flex: 1;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+
+  background: #eee;
+  border: 1px solid transparent;
   padding: 0.2em 0.65em;
   &:focus {
     outline: none;
-    background: #eee;
+    border-color: #ccc;
+    background: #fafafa;
   }
 }
 
 input[type="submit"] {
+  border-radius: 0 $border-radius $border-radius 0;
   background: rgba(35, 240, 110, 0.9);
   border: 0;
-  border-radius: 3px;
   padding: 0.25em 0.65em;
 }
