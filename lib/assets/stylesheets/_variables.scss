@@ -1,0 +1,5 @@
+$border-radius: 3px;
+// new todo form submit button background hover
+$ntf-sb-bg-h: rgba(35, 240, 110, 0.9);
+// new todo form submit button background
+$ntf-sb-bg: desaturate($ntf-sb-bg-h, 80);

@@ -13,8 +13,8 @@
 
   <% isNew = @task.id == nil %>
 
-  <div class="field">
-    <%= f.text_field :description, :placeholder => 'Call Mom, wash dishes, etc.' %>
-    <%= f.submit (isNew ? 'Add' : 'Update') %>
+  <div class="ntf">
+    <%= f.text_field :description, :placeholder => 'ex: Call Mom, wash dishes, etc.', :class => 'ntf-tb' %>
+    <%= f.submit (isNew ? 'Add' : 'Update'), :class => 'ntf-sb' %>
   </div>
 <% end %>

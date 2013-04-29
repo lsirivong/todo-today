@@ -1,67 +1,129 @@
 @import 'normalize';
+// @import '/lib/assets/stylesheets/variables';
 
+// todo: integrate compass and use css3 mixins to gain proper vendor prefixing;
+
+
+// todo: move into _variables.scss - unable to reference properly from here.
 $border-radius: 3px;
+// new task form submit button:hover background
+$ntf-sb-bg-h: rgba(35, 240, 110, 0.9);
+// new task form submit button background
+$ntf-sb-bg: lighten(desaturate($ntf-sb-bg-h, 80), 20);
+// new task form textbox background
+$ntf-tb-bg: #eee;
+// new task form textbox:focus background
+$ntf-tb-bg-f: #fafafa;
 
+// todo: move into _css3.scss - unable to reference properly from here.
+@mixin flexbox-wrap() {
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;      /* TWEENER - IE 10 */
+	display: -webkit-flex;     /* NEW - Chrome */
+	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin flexbox-flex($value) {
+	-webkit-box-flex: $value;      /* OLD - iOS 6-, Safari 3.1-6 */
+	-moz-box-flex: $value;         /* OLD - Firefox 19- */
+	-webkit-flex: $value;          /* Chrome */
+	-ms-flex: $value;              /* IE 10 */
+	flex: $value;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+
+// todo: move into global styles
 body {
-  font-family: 'Jubilat';
-  font-size: 2em;
+	font-family: 'Jubilat'; // todo: improve stack fallbacks
+	font-size: 2em;
 
-  max-width: 27em;
-  margin: 0.8em auto;
-  padding: 0 1em;
+	max-width: 27em;
+	margin: 0.8em auto;
+	padding: 0 1em;
+}
+
+// nonsemantic inline wrapper
+i {
+	font-style: normal;
+}
+
+input[type="text"],
+textarea,
+input[type="submit"] {
+	font-family: inherit;
+	box-sizing: border-box;
 }
 
 h1 {
-  text-align: center;
-  font-size: 2.4em;
+	text-align: center;
+	font-size: 2.4em;
 
-  margin: 0.5em;
+	margin: 0.5em;
 }
 
-i {
-  font-style: normal;
+// New Task Form
+.ntf {
+	@include flexbox-wrap();
 }
 
+// New Task Form Text Box
+.ntf-tb {
+	border-radius: $border-radius 0 0 $border-radius;
+	@include flexbox-flex(1);
+
+	background: $ntf-tb-bg;
+	border: 1px solid transparent;
+	padding: 0.2em 0.65em;
+	&:focus {
+		outline: none;
+		border-color: #ccc;
+		background: $ntf-tb-bg-f;
+	}
+}
+
+// New Task Form Submit Button
+.ntf-sb {
+	border-radius: 0 $border-radius $border-radius 0;
+	border: 0;
+	padding: 0.25em 0.65em;
+	background: $ntf-sb-bg;
+	&:hover {
+		background: $ntf-sb-bg-h;
+	}
+}
+
+// Complete Task item description
 input:checked + i {
-  text-decoration: line-through;
-  color: #ccc;
+	text-decoration: line-through;
+	color: #ccc;
 }
 
-.field {
-  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
-  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
-  display: -ms-flexbox;      /* TWEENER - IE 10 */
-  display: -webkit-flex;     /* NEW - Chrome */
-  display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+.task-list {
+	margin-top: 0.7em;
 }
 
-input[type="text"], textarea, input[type="submit"] {
-  font-family: inherit;
-  box-sizing: border-box;
-}
-
-input[type="text"] {
-  border-radius: $border-radius 0 0 $border-radius;
-  -webkit-box-flex: 1;      /* OLD - iOS 6-, Safari 3.1-6 */
-  -moz-box-flex: 1;         /* OLD - Firefox 19- */
-  // width: 20%;               /* For old syntax, otherwise collapses. */
-  -webkit-flex: 1;          /* Chrome */
-  -ms-flex: 1;              /* IE 10 */
-  flex: 1;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
-
-  background: #eee;
-  border: 1px solid transparent;
-  padding: 0.2em 0.65em;
-  &:focus {
-    outline: none;
-    border-color: #ccc;
-    background: #fafafa;
-  }
-}
-
-input[type="submit"] {
-  border-radius: 0 $border-radius $border-radius 0;
-  background: rgba(35, 240, 110, 0.9);
-  border: 0;
-  padding: 0.25em 0.65em;
+.task-item-action-button {
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 0.47em;
+	line-height: 1em;
+	text-decoration: none;
+	text-shadow: 0 -1px rgba(0,0,0,0.06);
+	color: #fff;
+	float: right;
+	display: inline-block;
+	border-radius: 2px;
+	padding: 0.25em 0.35em 0.3em;
+	margin: 0.472em 3px;
+	background: #ddd;
+	opacity: 0;
+	-webkit-transition: all 0.2s ease;
+	.task-item:hover & {
+		-webkit-transition: all 0.15s ease;
+		opacity: 1;
+	}
+	&:hover {
+		-webkit-transition: all 0.15s ease;
+		background: #ccc;
+	}
 }

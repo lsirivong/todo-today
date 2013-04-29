@@ -1,6 +1,6 @@
-<div>
+<div class="task-item">
   <input type="checkbox" <%= 'checked' if task.completed %> value="<%= task.id %>" />
   <i><%= task.description %></i>
-  <%= link_to 'Edit', edit_task_path(task) %>
-  <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Edit', edit_task_path(task), :class => 'task-item-action-button' %>
+  <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'task-item-action-button' %>
 </div>
