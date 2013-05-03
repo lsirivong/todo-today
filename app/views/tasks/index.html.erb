@@ -1,5 +1,5 @@
 <h1>Today&rsquo;s Todos</h1>
-<%= render :partial => "simple_form" %>
+<%= render :partial => "simple_form", :locals => { :task => @task } %>
 <div class="task-list">
 	<%= render :partial => @tasks %>
 </div>

@@ -127,3 +127,16 @@ input:checked + i {
 		background: #ccc;
 	}
 }
+
+.inline-edit-task-form {
+	display: none;
+}
+
+.is-editing {
+	i {
+		display: none;
+	}
+	.inline-edit-task-form {
+		display: inline-block;
+	}
+}

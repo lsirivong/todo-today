@@ -1,17 +1,17 @@
-<%= form_for(@task, :remote => true) do |f| %>
-  <% if @task.errors.any? %>
+<%= form_for(task, :remote => true) do |f| %>
+  <% if task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
       <ul>
-      <% @task.errors.full_messages.each do |msg| %>
+      <% task.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <% isNew = @task.id == nil %>
+  <% isNew = task.id == nil %>
 
   <div class="ntf">
     <%= f.text_field :description, :placeholder => 'ex: Call Mom, wash dishes, etc.', :class => 'ntf-tb' %>

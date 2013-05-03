@@ -1,5 +1,5 @@
 $(document).ready(function () {
-	$('.task_list input[type="checkbox"]').on('change', function () {
+	$('.task-list input[type="checkbox"]').on('change', function () {
 		console.log('checkbox change');
 		var $me = $(this),
 			id = $me.val();
@@ -17,5 +17,15 @@ $(document).ready(function () {
 				}
 			}
 		);
+	});
+
+	$('.task-item').click(function (e) {
+		var isEditTarget = e.target === this || $(e.target).is('i');
+		console.log(isEditTarget);
+		if (isEditTarget) {
+			$('.task-item').removeClass('is-editing');
+			$(this).toggleClass('is-editing');
+			return false;
+		};
 	});
 });

@@ -1,6 +1,14 @@
-<div class="task-item">
-  <input type="checkbox" <%= 'checked' if task.completed %> value="<%= task.id %>" />
-  <i><%= task.description %></i>
-  <%= link_to 'Edit', edit_task_path(task), :class => 'task-item-action-button' %>
-  <%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'task-item-action-button' %>
+<div class="task-item task-item-<%= task.id %>">
+	<input type="checkbox" <%= 'checked' if task.completed %> value="<%= task.id %>" />
+	<i><%= task.description %></i>
+	<div class="inline-edit-task-form">
+		<%= form_for(task, :remote => true) do |f| %>
+			<div class="ntf">
+				<%= f.text_field :description, :class => 'ntf-tb' %>
+				<%= f.submit ('Update'), :class => 'ntf-sb' %>
+			</div>
+		<% end %>
+	</div>
+	<%# <%= link_to 'Edit', edit_task_path(task), :class => 'task-item-action-button edit-task-item-button' %>
+	<%= link_to 'Delete', task, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'task-item-action-button' %>
 </div>
