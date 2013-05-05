@@ -19,13 +19,22 @@ $(document).ready(function () {
 		);
 	});
 
-	$('.task-item').click(function (e) {
-		var isEditTarget = e.target === this || $(e.target).is('i');
-		console.log(isEditTarget);
-		if (isEditTarget) {
-			$('.task-item').removeClass('is-editing');
-			$(this).toggleClass('is-editing');
-			return false;
-		};
+	$('.task-item')
+		.click(function (e) {
+			var isEditTarget = e.target === this || $(e.target).is('i');
+			console.log(isEditTarget);
+			if (isEditTarget) {
+				$('.task-item').removeClass('is-editing');
+				var isEditing = $(this).toggleClass('is-editing').hasClass('is-editing');
+
+				if (isEditing) {
+					$(this).find('.ntf-tb').focus();
+				};
+				return false;
+			};
+		});
+
+	$('.ntf-tb').blur(function (e) {
+		$(this).closest('.task-item').removeClass('is-editing');
 	});
 });
