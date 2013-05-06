@@ -1,6 +1,5 @@
 $(document).ready(function () {
 	$('.task-list input[type="checkbox"]').on('change', function () {
-		console.log('checkbox change');
 		var $me = $(this),
 			id = $me.val();
 		$.ajax(
@@ -20,12 +19,13 @@ $(document).ready(function () {
 	});
 
 	$('.task-item')
+		// enter edit state when task item is clicked
 		.click(function (e) {
-			var isEditTarget = e.target === this || $(e.target).is('i');
-			console.log(isEditTarget);
+			// Only enter edit state when container or description is clicked
+			var isEditTarget = e.target === this || $(e.target).is('i'),
+				isEditing;
 			if (isEditTarget) {
-				$('.task-item').removeClass('is-editing');
-				var isEditing = $(this).toggleClass('is-editing').hasClass('is-editing');
+				isEditing = $(this).toggleClass('is-editing').hasClass('is-editing');
 
 				if (isEditing) {
 					$(this).find('.ntf-tb').focus();
@@ -34,6 +34,7 @@ $(document).ready(function () {
 			};
 		});
 
+	// leave edit state when text box loses focus
 	$('.ntf-tb').blur(function (e) {
 		$(this).closest('.task-item').removeClass('is-editing');
 	});
