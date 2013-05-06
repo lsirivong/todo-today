@@ -3,7 +3,7 @@ class TasksController < ApplicationController
   # GET /tasks.json
   def index
     today = Date.today
-    @tasks = Task.where("created_at > #{today}").order("created_at DESC")
+    @tasks = Task.where("created_at > #{today}").order("completed ASC, created_at DESC")
     @task = Task.new
 
     respond_to do |format|
